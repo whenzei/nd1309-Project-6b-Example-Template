@@ -4,8 +4,10 @@ import '../coffeeaccesscontrol/RetailerRole.sol';
 import '../coffeeaccesscontrol/ConsumerRole.sol';
 import '../coffeeaccesscontrol/FarmerRole.sol';
 import '../coffeeaccesscontrol/DistributorRole.sol';
+import '../coffeecore/Ownable.sol';
 
-contract SupplyChain is DistributorRole, ConsumerRole, FarmerRole, RetailerRole {
+
+contract SupplyChain is DistributorRole, ConsumerRole, FarmerRole, RetailerRole, Ownable {
 
   // Define 'owner'
   address public owner;
