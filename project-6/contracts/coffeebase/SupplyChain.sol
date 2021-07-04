@@ -1,4 +1,6 @@
 pragma solidity ^0.4.24;
+pragma experimental ABIEncoderV2;
+
 // Define a contract 'Supplychain'
 import '../coffeeaccesscontrol/RetailerRole.sol';
 import '../coffeeaccesscontrol/ConsumerRole.sol';
@@ -370,5 +372,20 @@ contract SupplyChain is DistributorRole, ConsumerRole, FarmerRole, RetailerRole,
     consumerID,
     productRetailPrice
     );
+  }
+
+  function recordHistory(uint256 _upc, string memory transactionHash)
+  public
+  verifyCaller(items[_upc].ownerID)
+  {
+    itemsHistory[_upc].push(transactionHash);
+  }
+
+  function getItemHistory(uint256 _upc)
+  public
+  view
+  returns (string[] history)
+  {
+    history = itemsHistory[_upc];
   }
 }
