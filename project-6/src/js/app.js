@@ -63,32 +63,19 @@ let App = {
 
     initWeb3: async function () {
         if (window.ethereum) {
-            App.web3Provider = window.ethereum;
-            try {
-                // Request account access
-                await ethereum
-                    .request({ method: 'eth_requestAccounts' });
-            } catch (error) {
-                // User denied account access...
-                console.error("User denied account access");
-            }
+            App.web3 = new Web3(Web3.givenProvider);  
+            await window.ethereum.enable()
+        } else {
+            App.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9545"),);
         }
-        // If no injected web3 instance is detected, fall back to Ganache
-        else {
-           throw new Error('Metamask not installed');
-        }
-
-        App.web3 = new Web3(App.web3Provider);
 
         await App.getMetaskAccountID();
         return App.initSupplyChain();
     },
 
     getMetaskAccountID: async function () {
-        const { web3 } = this;
-
         try {
-            const accounts = await web3.eth.getAccounts();
+            const accounts = await App.web3.eth.getAccounts();
             console.log(accounts)
             App.metamaskAccountID = accounts[0];
             console.log(App.metamaskAccountID)

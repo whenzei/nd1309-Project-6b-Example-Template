@@ -2,109 +2,48 @@
 
 This repository containts an Ethereum DApp that demonstrates a Supply Chain flow between a Seller and Buyer. The user story is similar to any commonly used supply chain process. A Seller can add items to the inventory system stored in the blockchain. A Buyer can purchase such items from the inventory system. Additionally a Seller can mark an item as Shipped, and similarly a Buyer can mark an item as Received.
 
-The DApp User Interface when running should look like...
+## Project Write Up
 
-![truffle test](images/ftc_product_overview.png)
+### Activity Diagram
+![Activty Diagram](images/Activity_Diagram.png)
 
-![truffle test](images/ftc_farm_details.png)
+### Sequence Diagram
+![Sequence Diagram](images/Sequence_Diagram.png)
 
-![truffle test](images/ftc_product_details.png)
+### State Diagram
+![State Diagram](images/State_Diagram.png)
 
-![truffle test](images/ftc_transaction_history.png)
+### Class Diagram
+![Class Diagram](images/Class_Diagram.png)
+
+## Sample Run
+![Sample Run](images/samplerun.png)
+
+## Test Run
+![tests](images/tests.png)
 
 
-## Getting Started
+## Libraries/Frameworks Used
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-Please make sure you've already installed ganache-cli, Truffle and enabled MetaMask extension in your browser.
-
-```
-Give examples (to be clarified)
-```
-
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Clone this repository:
-
-```
-git clone https://github.com/udacity/nd1309/tree/master/course-5/project-6
-```
-
-Change directory to ```project-6``` folder and install all requisite npm packages (as listed in ```package.json```):
-
-```
-cd project-6
-npm install
-```
-
-Launch Ganache:
-
-```
-ganache-cli -m "spirit supply whale amount human item harsh scare congress discover talent hamster"
-```
-
-Your terminal should look something like this:
-
-![truffle test](images/ganache-cli.png)
-
-In a separate terminal window, Compile smart contracts:
-
-```
-truffle compile
-```
-
-Your terminal should look something like this:
-
-![truffle test](images/truffle_compile.png)
-
-This will create the smart contract artifacts in folder ```build\contracts```.
-
-Migrate smart contracts to the locally running blockchain, ganache-cli:
-
-```
-truffle migrate
-```
-
-Your terminal should look something like this:
-
-![truffle test](images/truffle_migrate.png)
-
-Test smart contracts:
-
-```
-truffle test
-```
-
-All 10 tests should pass.
-
-![truffle test](images/truffle_test.png)
-
-In a separate terminal window, launch the DApp:
-
-```
-npm run dev
-```
-
-## Built With
-
-* [Ethereum](https://www.ethereum.org/) - Ethereum is a decentralized platform that runs smart contracts
-* [IPFS](https://ipfs.io/) - IPFS is the Distributed Web | A peer-to-peer hypermedia protocol
+* [Ethereum](https://www.ethereum.org/) - Ethereum is a decentralized platform that runs smart contracts.
 to make the web faster, safer, and more open.
 * [Truffle Framework](http://truffleframework.com/) - Truffle is the most popular development framework for Ethereum with a mission to make your life a whole lot easier.
+* WebPack - module bundler for JS files
+* Node (12.13.1) - JavaScript runtime environment that runs on the V8 engine and executes JavaScript code outside a web browser.
+* @truffle/hdwallet-provider (1.4.0) - HD Wallet-enabled Web3 provider.
+* web3 - allows for interactions with a local or remote ethereum node, using a HTTP or IPC connection
 
 
-## Authors
-
-See also the list of [contributors](https://github.com/your/project/contributors.md) who participated in this project.
-
-## Acknowledgments
-
-* Solidity
-* Ganache-cli
-* Truffle
-* IPFS
+## Contract Address & Transaction Hashes
+* Contract address - 0xa1b2Ca2E25e1c14443aeB08539618bE188B3776A
+* Contract deployment transaction - 0xc7b63b94e605eb3efe233542136e41008384b92515ccb7611789a23c755f92a5
+* Harvest transaction - 0xcddd1189b344d071e4ff4e8f6c4abe5d65dec97a05f1197a314c31701366f04b
+* Process transaction - 0xbcb5342048e38495271df188cb1ce7f951984e691461271f71c24df9daf0e467
+* Pack transaction - 0x799a32c07d01c0dd099a9f7197ca6b3fca0d32f83b9f42e319caf9009e330c61
+* Sell transaction - 0xbeeaa8f88ea4008c985491d505c699f2510b51cc792b40fc5f75bbe678c1989f
+* Buy transaction - 0x64aa06fcbccfe9015c0aa51fb6b259402368c56f24d79bf6652db9f7924b6f88
+* Ship transaction - 
+0x13ff9c38f957bd0a81223062f54d0d6b0bc9681df2d4b49e8a365d7173d4aef1
+* Receive transaction - 0x064b75daf4dfd942818df4b39a178ed2aeff5d9414b27308224b23d36c7955c7
+* Purchase transaction - 
+0x7f63c49f55a81894a6084ddefb6d6efb61bf83e0139d2d784ccaae73e998cb44
