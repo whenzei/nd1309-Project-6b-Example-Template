@@ -29,7 +29,9 @@ This repository containts an Ethereum DApp that demonstrates a Supply Chain flow
 to make the web faster, safer, and more open.
 * [Truffle Framework](http://truffleframework.com/) - Truffle is the most popular development framework for Ethereum with a mission to make your life a whole lot easier.
 * WebPack - module bundler for JS files
-* Node (12.13.1) - JavaScript runtime environment that runs on the V8 engine and executes JavaScript code outside a web browser.
+* Node (12.13.1) - JavaScript runtime environment that runs on the V8 engine and 
+executes JavaScript code outside a web browser.
+* truffle (5.3.10) - development environment, testing framework and deployment pipeline for Ethereum dapps
 * @truffle/hdwallet-provider (1.4.0) - HD Wallet-enabled Web3 provider.
 * web3 - allows for interactions with a local or remote ethereum node, using a HTTP or IPC connection
 
