@@ -132,26 +132,27 @@ contract('SupplyChain', function(accounts) {
             eventEmitted = true
         })
 
+
         await supplyChain.harvestItem(upc, originFarmerID, originFarmName, originFarmInformation, originFarmLatitude, originFarmLongitude, productNotes)
         await supplyChain.processItem(upc, {from: originFarmerID})
         await supplyChain.packItem(upc, {from: originFarmerID})
         await supplyChain.sellItem(upc, productPrice, {from: originFarmerID})
         const initialFarmerBalance = await web3.eth.getBalance(originFarmerID)
         const initialDistributorBalance = await web3.eth.getBalance(distributorID)
-
-        const amountSent = web3.utils.toWei('0.00000015', "ether")
-        await supplyChain.buyItem(upc, {from: distributorID, value: amountSent, gasPrice: 0})
-
-        const resultBufferTwo = await supplyChain.fetchItemBufferTwo(upc)
-        const expectedItemState = 4
+        await supplyChain.buyItem(upc, {from: distributorID, value: productPrice, gasPrice: '0'})
+        
         const farmerBalance = await web3.eth.getBalance(originFarmerID)
         const distributorBalance = await web3.eth.getBalance(distributorID)
+        const resultBufferTwo = await supplyChain.fetchItemBufferTwo(upc)
+        const expectedItemState = 4
+        const expectedFarmerBalance = new web3.utils.BN(initialFarmerBalance).add(new web3.utils.BN(productPrice)).toString()
+        const expectedDistributorBalance = new web3.utils.BN(initialDistributorBalance).sub(new web3.utils.BN(productPrice)).toString()
 
         assert.equal(resultBufferTwo[5], expectedItemState, 'Error: Invalid item State')
         assert.equal(resultBufferTwo[4], productPrice, 'Error: Invalid item State')
         assert.equal(resultBufferTwo[6], distributorID, 'Error: Missing or Invalid distributorID')
-        assert.equal(farmerBalance, Number(initialFarmerBalance) + Number(productPrice), 'Error: Invalid Farmer balance')
-        assert.equal(distributorBalance, Number(initialDistributorBalance) - Number(productPrice), 'Error: Invalid Distributor balance')
+        assert.equal(farmerBalance, expectedFarmerBalance, 'Error: Invalid Farmer balance')
+        assert.equal(distributorBalance, expectedDistributorBalance, 'Error: Invalid Distributor balance')
         assert.equal(eventEmitted, true, 'Invalid event emitted')       
     })    
 
