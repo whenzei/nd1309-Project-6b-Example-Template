@@ -157,7 +157,7 @@ let App = {
                 $('#originFarmLongitude').val(),
                 $('#productNotes').val(),).send({ from: App.metamaskAccountID })
             console.log('harvestItem', result)
-            await recordHistory(upc, result.transactionHash).send({ from: App.metamaskAccountID })
+            await recordHistory(upc, result.transactionHash).call({ from: App.metamaskAccountID })
         } catch (error) {
             console.log('Error while harvesting item.', error)
             return
@@ -169,7 +169,7 @@ let App = {
         try {
             let result = await processItem(this.upc).send({ from: App.metamaskAccountID })
             console.log('processItem', result)
-            await recordHistory(this.upc, result.transactionHash).send({ from: App.metamaskAccountID })
+            await recordHistory(this.upc, result.transactionHash).call({ from: App.metamaskAccountID })
         } catch (error) {
             console.log('Error while processing item.', error)
             return
@@ -181,7 +181,7 @@ let App = {
         try {
             let result = await packItem(this.upc).send({ from: App.metamaskAccountID })
             console.log('packItem', result)
-            await recordHistory(this.upc, result.transactionHash).send({ from: App.metamaskAccountID })
+            await recordHistory(this.upc, result.transactionHash).call({ from: App.metamaskAccountID })
         } catch (error) {
             console.log('Error while packing item.', error)
             return
@@ -195,7 +195,7 @@ let App = {
             const price = App.web3.utils.toWei(productPrice, "ether")
             let result = await sellItem(this.upc, price).send({ from: App.metamaskAccountID })
             console.log('sellItem', result)
-            await recordHistory(this.upc, result.transactionHash).send({ from: App.metamaskAccountID })
+            await recordHistory(this.upc, result.transactionHash).call({ from: App.metamaskAccountID })
         } catch (error) {
             console.log('Error while selling item.', error)
             return
@@ -210,7 +210,7 @@ let App = {
             console.log(price)
             let result = await buyItem(this.upc).send({ from: App.metamaskAccountID, value: price })
             console.log('buyItem', result)
-            await recordHistory(this.upc, result.transactionHash).send({ from: App.metamaskAccountID })
+            await recordHistory(this.upc, result.transactionHash).call({ from: App.metamaskAccountID })
         } catch (error) {
             console.log('Error while buying item.', error)
             return
