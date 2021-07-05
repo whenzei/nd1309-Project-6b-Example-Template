@@ -17,10 +17,10 @@ This repository containts an Ethereum DApp that demonstrates a Supply Chain flow
 ![Class Diagram](images/Class_Diagram.png)
 
 ## Sample Run
-![Sample Run](images/samplerun.png)
+![Sample Run](images/sample.png)
 
 ## Test Run
-![tests](images/tests.png)
+![tests](images/testsrun.png)
 
 
 ## Libraries/Frameworks Used
