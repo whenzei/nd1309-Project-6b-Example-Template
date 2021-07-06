@@ -20,7 +20,40 @@ This repository containts an Ethereum DApp that demonstrates a Supply Chain flow
 ![Sample Run](images/sample.png)
 
 ## Test Run
+* To run the tests for the Contracts, please ensure that truffle is installed.
+* In the command line run `truffle develop`
+* After the previous command has finished running, run the following command `test`
+* The test will start running and the below image is the expected outcome
 ![tests](images/testsrun.png)
+
+## App setup and walkthrough
+1. Install the necessary dependencies `npm install`
+2. Start local ethereum node `truffle develop`
+3. Deploy contract onto local node `migrate --reset`
+4. In a new command line tab, start the frontend server `npm run dev`
+5. Once the server is up and running, go to http://localhost:3000 on your browser with MetaMask plugin installed
+6. You should see the following landing page
+![Sample Run](images/walkthrough1.png)
+7. Update UPC field with a value (e.g. `1`) and all the fields under Farm Details (Farmer ID can be address used to deploy this contract). Hit the "Harvest" button.
+![Sample Run](images/walkthrough2.png)
+8. After the transaction is completed, you can verify that it is successful if the "Item State" is getting displayed with the right state.
+![Sample Run](images/walkthrough3.png)
+9. Update the item state with the respective buttons "Process", "Pack".
+10. To sell an item, define the Product Price field and hit the "For Sale" button.
+![Sample Run](images/walkthrough4.png)
+![Sample Run](images/walkthrough5.png)
+11. At this stage, we will be assumming the role of Distributor, hit the "Buy" button. You should see that the Distributor ID field getting updated. 
+![Sample Run](images/walkthrough6.png)
+![Sample Run](images/walkthrough7.png)
+12. As the Distributor, hit the "Ship" button to mark the item as Shipped.
+![Sample Run](images/walkthrough8.png)
+13. Now, as the Retailer, hit the "Receive" button to receive the item. You should see the fields updated accordingly.
+![Sample Run](images/walkthrough9.png)
+13. Finally, as the Consumer, hit the "Purchase" button to purchase the item.
+![Sample Run](images/walkthrough10.png)
+14. You can also fetch the neccessary details using "Fetch Data 1" and "Fetch Data 2" buttons (make sure to define the UPC before hitting the button). The fetched data will be populated into the respective fields.
+![Sample Run](images/walkthrough11.png)
+![Sample Run](images/walkthrough12.png)
 
 
 ## Libraries/Frameworks Used

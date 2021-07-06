@@ -78,8 +78,6 @@ let App = {
             const accounts = await App.web3.eth.getAccounts();
             console.log(accounts)
             App.metamaskAccountID = accounts[0];
-            console.log(App.metamaskAccountID)
-            $("#ownerID").val(accounts[0]);
         } catch (err) {
             console.log("Error retrieving account", error);
         }
@@ -157,6 +155,7 @@ let App = {
                 $('#originFarmLongitude').val(),
                 $('#productNotes').val(),).send({ from: App.metamaskAccountID })
             console.log('harvestItem', result)
+            await this.fetchItemBufferTwo();
             await recordHistory(upc, result.transactionHash).call({ from: App.metamaskAccountID })
         } catch (error) {
             console.log('Error while harvesting item.', error)
@@ -169,6 +168,7 @@ let App = {
         try {
             let result = await processItem(this.upc).send({ from: App.metamaskAccountID })
             console.log('processItem', result)
+            await this.fetchItemBufferTwo();
             await recordHistory(this.upc, result.transactionHash).call({ from: App.metamaskAccountID })
         } catch (error) {
             console.log('Error while processing item.', error)
@@ -181,6 +181,7 @@ let App = {
         try {
             let result = await packItem(this.upc).send({ from: App.metamaskAccountID })
             console.log('packItem', result)
+            await this.fetchItemBufferTwo();
             await recordHistory(this.upc, result.transactionHash).call({ from: App.metamaskAccountID })
         } catch (error) {
             console.log('Error while packing item.', error)
@@ -195,6 +196,7 @@ let App = {
             const price = App.web3.utils.toWei(productPrice, "ether")
             let result = await sellItem(this.upc, price).send({ from: App.metamaskAccountID })
             console.log('sellItem', result)
+            await this.fetchItemBufferTwo();
             await recordHistory(this.upc, result.transactionHash).call({ from: App.metamaskAccountID })
         } catch (error) {
             console.log('Error while selling item.', error)
@@ -210,6 +212,7 @@ let App = {
             console.log(price)
             let result = await buyItem(this.upc).send({ from: App.metamaskAccountID, value: price })
             console.log('buyItem', result)
+            await this.fetchItemBufferTwo();
             await recordHistory(this.upc, result.transactionHash).call({ from: App.metamaskAccountID })
         } catch (error) {
             console.log('Error while buying item.', error)
@@ -222,7 +225,8 @@ let App = {
         try {
             let result = await shipItem(this.upc).send({ from: App.metamaskAccountID})
             console.log('shipItem', result)
-            await recordHistory(this.upc, result.transactionHash).send({ from: App.metamaskAccountID })
+            await this.fetchItemBufferTwo();
+            await recordHistory(this.upc, result.transactionHash).call({ from: App.metamaskAccountID })
         } catch (error) {
             console.log('Error while shipping item.', error)
             return
@@ -234,7 +238,8 @@ let App = {
         try {
             let result = await receiveItem(this.upc).send({ from: App.metamaskAccountID})
             console.log('receiveItem', result)
-            await recordHistory(this.upc, result.transactionHash).send({ from: App.metamaskAccountID })
+            await this.fetchItemBufferTwo();
+            await recordHistory(this.upc, result.transactionHash).call({ from: App.metamaskAccountID })
         } catch (error) {
             console.log('Error while receiving item.', error)
             return
@@ -249,7 +254,8 @@ let App = {
             console.log(price)
             let result = await purchaseItem(this.upc).send({ from: App.metamaskAccountID, value: price})
             console.log('purchaseItem', result)
-            await recordHistory(this.upc, result.transactionHash).send({ from: App.metamaskAccountID })
+            await this.fetchItemBufferTwo();
+            await recordHistory(this.upc, result.transactionHash).call({ from: App.metamaskAccountID })
         } catch (error) {
             console.log('Error while purchasing item.', error)
             return
@@ -263,7 +269,7 @@ let App = {
             let result = await fetchItemBufferOne(upc).call()
             console.log(result)
             $("#sku").val(result[0])
-            $("#originOwnerID").html(result[2])
+            $("#ownerID").html(result[2])
             $("#originFarmerID").val(result[3])
             $("#originFarmName").val(result[4])
             $("#originFarmInformation").val(result[5])
